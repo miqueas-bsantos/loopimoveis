@@ -38,7 +38,8 @@ import { LimitToPipe } from './pipe/limit-to.pipe';
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1800 }),
     RouterModule.forRoot([
-      { path: '', component: AppComponent }
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: 'home', component: AppComponent }
     ])
   ],
   providers: [ImoveisService],
