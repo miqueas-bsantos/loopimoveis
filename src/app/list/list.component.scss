@@ -15,7 +15,6 @@
         right: 79px;
         bottom: 79px;
         @media screen and (max-width: 1200px){
-            bottom: 31px;
             right: 10px;
         }
     }
@@ -52,7 +51,7 @@
     &:nth-child(2){ right: 0;}
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     .detalhes{
         width: 140px;
         margin: 0 auto;
@@ -63,7 +62,7 @@
     }
     .btn-group{
         right: 79px !important;
-        bottom: 31px;
+        bottom: 31px !important;
     }
     
 }

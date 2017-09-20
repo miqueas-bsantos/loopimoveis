@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http }       from '@angular/http';
-
-// Observable class extensions
-import 'rxjs/add/observable/of';
 import { Observable }     from 'rxjs/Observable';
 
 // Observable operators
@@ -15,9 +12,9 @@ export class ImoveisService {
 
   private url = "api/imoveis/";
 
-  search(term: string): Observable<any[]> {
+  search(term: string, tipo: string): Observable<any[]> {
     return this.http
-               .get(`api/heroes/?name=${term}`)
+               .get(this.url+`?name=${term}&tipo=${tipo}`)
                .map(response => response.json().data as any[]);
   }
 

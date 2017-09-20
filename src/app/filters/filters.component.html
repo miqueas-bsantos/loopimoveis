@@ -5,21 +5,21 @@
             <ngb-tab class="tab-select bg-white" title="Compra" (click)="tipo='compra'; getImoveis()">
               <ng-template ngbTabContent>
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search For...">
+                    <input type="text" class="form-control" placeholder="Name" #searchCompra (keyup)="search(searchCompra.value)">
                   </div>
                   <h6>Dormitório(s)</h6>
                   <ng-template #t let-fill="fill">
                     <span *ngIf="fill === 100" class="full icon bed"></span>
                     <span *ngIf="fill === 0" class="icon bed"></span>
                   </ng-template>
-                  <ngb-rating [(rate)]="dormitorios" [starTemplate]="t" [readonly]="false" max="5" (rateChange)="getImoveis()"></ngb-rating>
+                  <ngb-rating [(rate)]="dormitorios" [starTemplate]="t" [readonly]="loader" max="5" (rateChange)="getImoveis()"></ngb-rating>
                   <span *ngIf="dormitorios" class="quantity">{{dormitorios}}</span>
                   <h6 class="mt-2">Vaga(s)</h6>
                   <ng-template #cars let-fill="fill">
                     <span *ngIf="fill === 100" class="full icon car"></span>
                     <span *ngIf="fill === 0" class="icon car"></span>
                   </ng-template>
-                  <ngb-rating [(rate)]="vagas" [starTemplate]="cars" [readonly]="false" max="5" (rateChange)="getImoveis()"></ngb-rating>
+                  <ngb-rating [(rate)]="vagas" [starTemplate]="cars" [readonly]="loader" max="5" (rateChange)="getImoveis()"></ngb-rating>
                   <span *ngIf="vagas" class="quantity">{{vagas}}</span>
                   <div class="mt-4 text-right mt-5">
                     <button class="btn btn-outline-success mt-5">Limpar Filtro</button>
@@ -29,21 +29,21 @@
             <ngb-tab class="tab-select" title="Aluguel" (click)="tipo='aluguel'; getImoveis()">
                 <ng-template ngbTabContent>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Search For...">
+                      <input type="text" class="form-control" placeholder="Name" #searchAluguel (keyup)="search(searchAluguel.value)">
                     </div>
                     <h6>Dormitório(s)</h6>
                     <ng-template #t let-fill="fill">
                       <span *ngIf="fill === 100" class="full icon bed"></span>
                       <span *ngIf="fill === 0" class="icon bed"></span>
                     </ng-template>
-                    <ngb-rating [(rate)]="dormitorios" [starTemplate]="t" [readonly]="false" max="5" (rateChange)="getImoveis()"></ngb-rating>
+                    <ngb-rating [(rate)]="dormitorios" [starTemplate]="t" [readonly]="loader" max="5" (rateChange)="getImoveis()"></ngb-rating>
                     <span *ngIf="dormitorios" class="quantity">{{dormitorios}}</span>
                     <h6 class="mt-2">Vaga(s)</h6>
                     <ng-template #cars let-fill="fill">
                       <span *ngIf="fill === 100" class="full icon car"></span>
                       <span *ngIf="fill === 0" class="icon car"></span>
                     </ng-template>
-                    <ngb-rating [(rate)]="vagas" [starTemplate]="cars" [readonly]="false" max="5" (rateChange)="getImoveis()"></ngb-rating>
+                    <ngb-rating [(rate)]="vagas" [starTemplate]="cars" [readonly]="loader" max="5" (rateChange)="getImoveis()"></ngb-rating>
                     <span *ngIf="vagas" class="quantity">{{vagas}}</span>
                     <div class="mt-5 text-right">
                       <button class="btn btn-outline-success mt-5">Limpar Filtro</button>

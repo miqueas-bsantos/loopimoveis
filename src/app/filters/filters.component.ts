@@ -2,6 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NgbTabsetConfig, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { ImoveisService } from '../services/imoveis.service';
 
+import { Observable }        from 'rxjs/Observable';
+import { Subject }           from 'rxjs/Subject';
+
+// Observable class extensions
+import 'rxjs/add/observable/of';
+
+// Observable operators
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
@@ -9,11 +20,12 @@ import { ImoveisService } from '../services/imoveis.service';
 })
 export class FiltersComponent implements OnInit {
 
-  dormitorios: number = 3;
-  vagas: number = 2;
-  tipo: string = "compra";
-  imoveis: any[] = [];
-  loader: boolean = false;
+  private dormitorios: number = 0;
+  private vagas: number = 0;
+  private tipo: string = "compra";
+  private imoveis: any[] = [];
+  private loader: boolean = false;
+  private searchTerms = new Subject<string>();
 
   constructor(config: NgbTabsetConfig, private imoveisService: ImoveisService) { 
     // customize default values of tabsets used by this component tree
@@ -33,6 +45,13 @@ export class FiltersComponent implements OnInit {
     }
   };
 
+  search(term: string): void {
+    this.searchTerms.next(term);
+    this.vagas = 0;
+    this.dormitorios = 0;
+    this.getTerm();
+  }
+
   getImoveis() {
     console.log(this.vagas, this.dormitorios, this.imoveis, this.tipo)
     this.loader = true;
@@ -44,7 +63,22 @@ export class FiltersComponent implements OnInit {
     });
   }
 
+  getTerm() {
+    this.loader = true;
+    this.searchTerms
+    .debounceTime(300)
+    .distinctUntilChanged()
+    .subscribe(term => {
+        this.imoveisService.search(term, this.tipo).subscribe(data => {
+          this.imoveis = data;
+          this.loader = false;
+        });
+      }
+    );
+  }
+
   ngOnInit() {
+
   }
 
 }
