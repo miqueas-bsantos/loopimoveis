@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "partials/reset.scss";
+@import "vendor/bootstrap/bootstrap.scss";
+@import "partials/filters.scss";
+@import "modules/icons.scss";
+@import "modules/shadow.scss";
+
+
+body{
+    background-color: $gray-100;
+}
+

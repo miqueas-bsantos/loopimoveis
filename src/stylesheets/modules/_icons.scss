@@ -1,0 +1,40 @@
+//filter
+.icon{
+    font-family: 'FontAwesome';
+    font-size: 25px;
+    color: #d3d3d3;
+    position: relative;  
+    display: inline-block;
+    &.bed {
+        &.full {
+            color: $green;
+        }
+        &::before{
+            content: "\f236";
+            margin-right: 7px;
+            .last-child{
+                margin-right: 0px !important; 
+            }
+        }
+    }
+    &.car {
+        &.full {
+            color: $red;
+        }
+        &::before{
+            content: "\f1b9";
+            margin-right: 7px;
+            .last-child{
+                margin-right: 0px !important; 
+            }
+        }
+    }
+}
+
+//list
+.list-group-item{
+    .icon{
+        &.car{ color: $red;}
+        &.bed{ color: $green;}
+    }
+}

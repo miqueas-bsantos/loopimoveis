@@ -1,0 +1,31 @@
+<ul class="list-group px-5 py-5 shadow-1 bg-white mt-5">
+    <li *ngFor="let imovel of imoveis" class="list-group-item border-0">
+      <div class="img-container">
+        <img [src]="imovel.img" width="200" alt="" class="rounded-0 img-responsive">
+      </div>
+      <div class="description text-secondary mb-3">
+          <h5 class="text-dark">{{imovel.name}}</h5>
+          {{imovel.description | limitTo: 100 }}
+          <div class="detalhes">
+                <div class="info">
+                    {{imovel.dormitorios}}
+                    <span class="icon bed" placement="bottom" ngbTooltip="Dormitorios">
+                    </span>
+                </div>
+                <div class="info">
+                    {{imovel.vagas}}
+                    <span class="icon car" placement="bottom" ngbTooltip="Vagas">
+                </span>
+            </div>
+          </div>
+          <div class="mt-2 btn-group">
+              <button class="btn btn-success">Tenho Interesse</button>
+              <button class="btn btn-primary">Mais Detalhes</button>
+          </div>
+      </div>
+      <hr>
+    </li>
+    <li *ngIf="!imoveis.length">
+        Nenhum imovel encontrado no critério de busca.
+    </li>
+</ul>

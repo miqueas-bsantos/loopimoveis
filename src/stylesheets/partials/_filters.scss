@@ -1,0 +1,21 @@
+//Filters component
+.filters{
+    .nav.nav-tabs{
+        background: $green;
+    }
+    .nav-item{
+        a{
+            background-color: transparent !important;
+            border-color: transparent !important;
+            color: $gray-500;
+            padding-top: 16px;
+            &.active{
+                color: $white;
+                border-bottom: solid 2px darken($green, 10%) !important;
+            }
+        }
+    }
+    .tab-content{
+        padding: 16px;
+    }
+}
